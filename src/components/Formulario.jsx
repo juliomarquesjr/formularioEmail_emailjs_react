@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import useTextos from "../hooks/useTextos";
 
 const Formulario = () => {
+  const textos = useTextos();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -28,7 +31,7 @@ const Formulario = () => {
           setEmail("");
           setMensagem("");
 
-          alert("Email enviado com sucesso!");
+          alert(textos.alertmsg);
         },
         (error) => {
           console.log("Erro: ", error);
@@ -40,7 +43,7 @@ const Formulario = () => {
     <React.Fragment>
       <div className="box_formulario">
         <form className="formulario" onSubmit={sendEmail}>
-          <label className="label">Nome:</label>
+          <label className="label">{textos.nome}</label>
           <input
             className="input"
             type="text"
@@ -49,7 +52,7 @@ const Formulario = () => {
             required
           />
 
-          <label className="label">Email:</label>
+          <label className="label">{textos.email}</label>
           <input
             className="input"
             type="email"
@@ -58,7 +61,7 @@ const Formulario = () => {
             required
           />
 
-          <label className="label">Mensagem:</label>
+          <label className="label">{textos.msg}</label>
           <textarea
             className="input"
             value={mensagem}
@@ -67,7 +70,7 @@ const Formulario = () => {
             required
           />
 
-          <button>Enviar Mensagem</button>
+          <button>{textos.botao}</button>
         </form>
       </div>
     </React.Fragment>
